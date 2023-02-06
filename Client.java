@@ -64,4 +64,19 @@ public class Client {
             return false;
         }
     }
+
+    public String greeting() {
+        try {
+            return groupServer.greeting();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return "Error";
+        }
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        System.out.println(client.greeting());
+        System.out.println("Client ready.");
+    }
 }

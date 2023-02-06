@@ -1,3 +1,4 @@
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -14,4 +15,7 @@ public interface GroupServer extends Remote {
     public void publish(String Article, String IP, int Port) throws RemoteException;
 
     public boolean ping() throws RemoteException;
+
+    // public void greeting() throws RemoteException;
+    public String greeting() throws RemoteException;
 }

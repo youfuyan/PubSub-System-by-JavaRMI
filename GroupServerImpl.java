@@ -4,7 +4,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class GroupServerImpl extends UnicastRemoteObject implements GroupServer {
     // Implement the methods defined in the Remote interface
     public GroupServerImpl() throws RemoteException {
-        super();
+        // super();
     }
 
     public void join(String IP, int Port) throws RemoteException {
@@ -30,5 +30,9 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
     public boolean ping() {
         return false;
         // Implement the ping method
+    }
+
+    public String greeting() {
+        return "Hello, CSCI5105-P1 !";
     }
 }
