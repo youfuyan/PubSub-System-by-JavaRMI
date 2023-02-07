@@ -20,12 +20,13 @@ public class Client {
         }
     }
 
-    public void join(String ip, int port) {
+    public boolean join(String ip, int port) {
         try {
             groupServer.join(ip, port);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public void leave(String ip, int port) {
@@ -36,28 +37,31 @@ public class Client {
         }
     }
 
-    public void subscribe(String ip, int port, String article) {
+    public boolean subscribe(String ip, int port, String article) {
         try {
             groupServer.subscribe(ip, port, article);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void unsubscribe(String ip, int port, String article) {
+    public boolean unsubscribe(String ip, int port, String article) {
         try {
             groupServer.unsubscribe(ip, port, article);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void publish(String article, String ip, int port) {
+    public boolean publish(String article, String ip, int port) {
         try {
             groupServer.publish(article, ip, port);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public boolean ping() {
