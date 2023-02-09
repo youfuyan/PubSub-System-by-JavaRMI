@@ -1,11 +1,15 @@
 package Client;
 
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Server.GroupServer;
+import Client.UDPReceiver;
 
 public class Client {
     private GroupServer groupServer;
@@ -64,13 +68,25 @@ public class Client {
         return false;
     }
 
-    public boolean ping() {
-        try {
-            return groupServer.ping();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public void ping(int interval, int pingNum) {
+        final Timer timer =  new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run(){
+                int pingCount = 0;
+                boolean pingResult = false;
+                try{
+                    pingResult = groupServer.ping();
+                    System.out.println("Ping scuccess, Ping #seq is" + (pingCount+1));
+                } catch (RemoteException e){
+                    e.printStackTrace();
+                    System.out.println("Ping Failed, Ping #seq is" + (pingCount+1));
+                }
+                pingCount ++;
+                if (pingCount == pingNum){
+                    timer.cancel();
+                }
+            }
+        }, 0, interval);
     }
 
     public String greeting() {
@@ -86,5 +102,15 @@ public class Client {
         Client client = new Client();
         System.out.println(client.greeting());
         System.out.println("Client ready.");
+        //client.ping(1000, 10);
+
+        UDPReceiver udpReceiver = new UDPReceiver(1090);
+        try {
+            udpReceiver.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
