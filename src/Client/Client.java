@@ -27,44 +27,60 @@ public class Client {
     public boolean join(String ip, int port) {
         try {
             groupServer.join(ip, port);
+            System.out.println("Join success");
+            return true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        System.out.println("Join failed");
         return false;
     }
 
-    public void leave(String ip, int port) {
+    public boolean leave(String ip, int port) {
         try {
             groupServer.leave(ip, port);
+            System.out.println("Leave success");
+            return true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        System.out.println("Leave failed");
+        return false;
     }
 
     public boolean subscribe(String ip, int port, String article) {
         try {
             groupServer.subscribe(ip, port, article);
+            System.out.println("Subscribe success");
+            return true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        System.out.println("Subscribe failed");
         return false;
     }
 
     public boolean unsubscribe(String ip, int port, String article) {
         try {
             groupServer.unsubscribe(ip, port, article);
+            System.out.println("Unsubscribe success");
+            return true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        System.out.println("Unsubscribe failed");
         return false;
     }
 
     public boolean publish(String article, String ip, int port) {
         try {
             groupServer.publish(article, ip, port);
+            System.out.println("Publish success");
+            return true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        System.out.println("Publish failed");
         return false;
     }
 
@@ -104,13 +120,15 @@ public class Client {
         System.out.println("Client ready.");
         //client.ping(1000, 10);
 
-        UDPReceiver udpReceiver = new UDPReceiver(1090);
+        UDPReceiver udpReceiver = new UDPReceiver(1099);
         try {
             udpReceiver.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //join
+        boolean join_status = client.join("127.0.0.1", 1099);
+        System.out.println("Join status is " + join_status);
 
     }
 }
