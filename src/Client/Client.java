@@ -13,6 +13,7 @@ import Client.UDPReceiver;
 
 public class Client {
     private GroupServer groupServer;
+    static int pingCount = 0;
 
     public Client() {
         try {
@@ -88,14 +89,13 @@ public class Client {
         final Timer timer =  new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run(){
-                int pingCount = 0;
                 boolean pingResult = false;
                 try{
                     pingResult = groupServer.ping();
-                    System.out.println("Ping scuccess, Ping #seq is" + (pingCount+1));
+                    System.out.println("Ping scuccess, Ping #seq is " + (pingCount+1));
                 } catch (RemoteException e){
                     e.printStackTrace();
-                    System.out.println("Ping Failed, Ping #seq is" + (pingCount+1));
+                    System.out.println("Ping Failed, Ping #seq is " + (pingCount+1));
                 }
                 pingCount ++;
                 if (pingCount == pingNum){
