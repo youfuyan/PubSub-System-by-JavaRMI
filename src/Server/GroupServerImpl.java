@@ -18,6 +18,22 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             this.IP = IP;
             this.Port = Port;
         }
+
+        public String getIP() {
+            return IP;
+        }
+
+        public int getPort() {
+            return Port;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == this) return true;
+            if (!(o instanceof ClientInfo)) return false;
+            ClientInfo c = (ClientInfo) o;
+            return IP.equals(c.IP) && Port == c.Port;
+        }
     }
     private HashMap<String, ArrayList<ClientInfo>> subscriptions;
     private ArrayList<ClientInfo> clients;
@@ -38,6 +54,9 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             if (clients.size() < MAXCLIENT) {
                 ClientInfo client = new ClientInfo(ip, port);
                 clients.add(client);
+                for (int i = 0; i < clients.size(); i++) {
+                    System.out.println(clients.get(i));
+                }
                 return true;
         }
             return false;
