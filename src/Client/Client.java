@@ -26,27 +26,39 @@ public class Client {
     }
 
     public boolean join(String ip, int port) {
+        boolean join_status = false;
         try {
-            groupServer.join(ip, port);
-            System.out.println("Join success");
-            return true;
+            join_status = groupServer.join(ip, port);
+            if (join_status){
+                System.out.println("Join success");
+            }
+            else{
+                System.out.println("Join failed");
+            }
+            return join_status;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         System.out.println("Join failed");
-        return false;
+        return join_status;
     }
 
     public boolean leave(String ip, int port) {
+        boolean leave_status = false;
         try {
-            groupServer.leave(ip, port);
-            System.out.println("Leave success");
-            return true;
+            leave_status = groupServer.leave(ip, port);
+            if (leave_status) {
+                System.out.println("Leave success");
+            }
+            else{
+                System.out.println("Leave failed");
+            }
+            return leave_status;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         System.out.println("Leave failed");
-        return false;
+        return leave_status;
     }
 
     public boolean subscribe(String ip, int port, String article) {
@@ -118,7 +130,7 @@ public class Client {
         Client client = new Client();
         System.out.println(client.greeting());
         System.out.println("Client ready.");
-        //client.ping(1000, 10);
+        client.ping(100, 5);
 
         UDPReceiver udpReceiver = new UDPReceiver(1099);
         try {
@@ -129,6 +141,8 @@ public class Client {
         //join
         boolean join_status = client.join("127.0.0.1", 1099);
         System.out.println("Join status is " + join_status);
+        boolean leave_status = client.leave("127.0.0.1", 1098);
+        System.out.println("Leave status is " + leave_status);
 
     }
 }
