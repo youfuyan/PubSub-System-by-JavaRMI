@@ -5,6 +5,7 @@ import java.net.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +36,25 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             return IP.equals(c.IP) && Port == c.Port;
         }
     }
+    private class Publication{
+        private String Article;
+        private String publisherIP;
+        private int publisherPort;
+
+        public Publication(String article, String publisherip, int publisherport){
+            this.Article = article;
+            this.publisherIP =publisherip;
+            this.publisherPort = publisherport;
+        }
+
+        public String getArticle() {
+            return Article;
+        }
+    }
+
     private HashMap<String, ArrayList<ClientInfo>> subscriptions;
     private ArrayList<ClientInfo> clients;
+    private ArrayList<Publication> publications;
     private static final int MAXCLIENT = 10;
 
     private final String[] types = new String[]{"Sports", "Lifestyle", "Entertainment", "Business", "Technology", "Science", "Politics", "Health"};
@@ -44,6 +62,7 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
     public GroupServerImpl() throws RemoteException {
         subscriptions = new HashMap<>();
         clients = new ArrayList<>();
+        publications = new ArrayList<>();
     }
     /*
     proper synchronization of access to shared resources is important in RMI to avoid any race conditions.
@@ -107,7 +126,6 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
         return false;
     }
 
-
     public synchronized boolean unsubscribe(String ip, int port, String article) throws RemoteException {
         try {
             ClientInfo client = new ClientInfo(ip, port);
@@ -139,10 +157,23 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
                 return false;
             }
             String type = parts[0];
+            String originator = parts[1];
+            String org = parts[2];
+            String contents = parts[3];
+            if ((!(type == "" && originator == "" && org == "")) && contents != ""){
+                if((Arrays.asList(types).contains(type)) || type == "" ){
+                Publication publication = new Publication(article, ip, port);
+                publications.add(publication);
+                return true;
+                }
+            }
+            else return false;
+            /* 
             List<ClientInfo> subscribers = subscriptions.get(type);
             if (subscribers == null) {
                 return true;
             }
+            
             for (ClientInfo subscriber : subscribers) {
                 // send article to subscriber via UDP
                 try {
@@ -160,6 +191,7 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
                 }
             }
             return true;
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
