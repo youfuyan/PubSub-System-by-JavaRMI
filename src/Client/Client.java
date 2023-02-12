@@ -86,15 +86,17 @@ public class Client {
     }
 
     public boolean publish(String article, String ip, int port) {
+        boolean publish_status = false;
         try {
-            groupServer.publish(article, ip, port);
-            System.out.println("Publish success");
-            return true;
+            publish_status = groupServer.publish(article, ip, port);
+            if(publish_status) System.out.println("Publish success");
+            else System.out.println("Publish failed");
+            return publish_status;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         System.out.println("Publish failed");
-        return false;
+        return publish_status;
     }
 
     public void ping(int interval, int pingNum) {
@@ -141,8 +143,10 @@ public class Client {
         //join
         boolean join_status = client.join("127.0.0.1", 1099);
         System.out.println("Join status is " + join_status);
-        boolean leave_status = client.leave("127.0.0.1", 1098);
-        System.out.println("Leave status is " + leave_status);
+        //boolean leave_status = client.leave("127.0.0.1", 1098);
+        //System.out.println("Leave status is " + leave_status);
+        boolean publish_status = client.publish("Sport;;;contents","127.0.0.1", 1099);
+        System.out.println("publish status is " + publish_status);
 
     }
 }
