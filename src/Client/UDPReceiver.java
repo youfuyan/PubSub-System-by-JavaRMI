@@ -5,7 +5,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import Client.Client;
+
 public class UDPReceiver implements Runnable {
+    private Client client;
     private int port;
     private InetAddress address;
     private DatagramSocket socket;
@@ -14,17 +17,18 @@ public class UDPReceiver implements Runnable {
 
     private boolean running;
 
-    public String getCurrentMessage() {
-        return currentMessage;
-    }
+    // public String getCurrentMessage() {
+    //     return currentMessage;
+    // }
 
-    private void setCurrentMessage(String currentMessage) {
-        this.currentMessage = currentMessage;
-    }
-    public UDPReceiver (int port, InetAddress address){
+    // private void setCurrentMessage(String currentMessage) {
+    //     this.currentMessage = currentMessage;
+    // }
+    public UDPReceiver (int port, InetAddress address,Client client){
         this.port = port;
         this.address = address;
         this.currentMessage = "No message received yet.";
+        this.client = client;
     }
     public void start() throws IOException {
         socket = new DatagramSocket(port);
@@ -40,7 +44,7 @@ public class UDPReceiver implements Runnable {
                 socket.receive(packet);
                 String message = new String(packet.getData(), 0, packet.getLength());
                 // process the received message
-                setCurrentMessage(message);
+                client.setCurrentMessage(message);
                 System.out.println("Client " + port + " received message: " + message);
             } catch (IOException e) {
                 e.printStackTrace();

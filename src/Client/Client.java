@@ -192,10 +192,10 @@ public class Client {
         }, 0, interval);
     }
 
-    public void receiveUDP(int port, String ip){
+    public void receiveUDP(int port, String ip, Client client){
         try{
             InetAddress address = InetAddress.getByName(ip);
-            UDPReceiver receiver = new UDPReceiver(port, address);
+            UDPReceiver receiver = new UDPReceiver(port, address,client);
              receiver.start();
         } catch (Exception e){
             e.printStackTrace();
@@ -232,7 +232,7 @@ public class Client {
         boolean join_status2 = client.join("127.0.0.1", 1098);
         client.subscribe("127.0.0.1", 1098, "Sports;;;");
         //client.unsubscribe("127.0.0.1", 1098, "Sports;;;");
-       client.receiveUDP(1098,"127.0.0.1");
+       client.receiveUDP(1098,"127.0.0.1",client);
         boolean publish_status = client.publish("Sports;UMN;;contents","127.0.0.1", 1099);
         //should not receive Eneterainment
         boolean publish_status2 = client.publish("Entertainment;UMN;;contents2","127.0.0.1", 1098);

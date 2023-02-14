@@ -27,8 +27,8 @@ public class ClientScenarioTest {
         boolean join_status2 = client2.join("127.0.0.1", 1098);
         client1.subscribe("127.0.0.1", 1099, "Sports;;;");
         client2.subscribe("127.0.0.1", 1098, "Entertainment;;;");
-        client1.receiveUDP(1099,"127.0.0.1");
-        client2.receiveUDP(1098,"127.0.0.1");
+        client1.receiveUDP(1099,"127.0.0.1",client1);
+        client2.receiveUDP(1098,"127.0.0.1",client2);
         boolean publish_status = client1.publish("Entertainment;UMN;;contents2","127.0.0.1", 1099);
 
         System.out.println("publish status is " + publish_status);
