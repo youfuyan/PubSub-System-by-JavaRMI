@@ -254,6 +254,21 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
         return false;
     }
 
+    public synchronized boolean unsubscribeAll(String ip, int port) throws RemoteException {
+        try {
+            ClientInfo client = new ClientInfo(ip, port);
+            int index = clients.indexOf(client);
+            if (index != -1) {
+                clients.get(index).SubscribedArticles = null;
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public synchronized boolean publish(String article, String ip, int port) throws RemoteException {
         try {
             boolean publish_status = false;
@@ -336,6 +351,6 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
     }
 
     public synchronized String greeting() {
-        return "Hello, CSCI5105-P1 !";
+        return "Hello, CSCI5105-P1!";
     }
 }

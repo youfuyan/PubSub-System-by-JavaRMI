@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)">
+    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="Change Test case. All test passed">
+      <change afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/ClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/UDPReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/UDPReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/GroupServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/GroupServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/GroupServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/GroupServerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +62,22 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientTest">
+  <component name="RunManager" selected="Application.ClientScenarioTest">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
+      <module name="CSCI5105-P1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientScenarioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -83,14 +102,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="CSCI5105-P1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientMethodTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -99,7 +111,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Client" />
-      <option name="MAIN_CLASS_NAME" value="Client.ClientTest" />
+      <option name="MAIN_CLASS_NAME" value="Client.ClientMethodTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,10 +119,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClientTest" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.ClientScenarioTest" />
         <item itemvalue="Application.GroupServerMain" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.ClientMethodTest" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675965214462</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Change Test case. All test passed">
+      <created>1676352579199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1676352579199</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +203,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Make it to IntelliJ java idea project" />
     <MESSAGE value="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)" />
+    <MESSAGE value="Change Test case. All test passed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Test case. All test passed" />
   </component>
 </project>

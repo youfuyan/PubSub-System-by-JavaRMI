@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ClientTest {
+public class ClientMethodTest {
 
     @Test
     public void testJoin() {
@@ -68,6 +68,7 @@ public class ClientTest {
         client.ping(1000, 3);
         System.out.println("Test Case 7: Ping - PASSED");
     }
+
 
 }
 

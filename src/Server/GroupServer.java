@@ -15,6 +15,7 @@ public interface GroupServer extends Remote {
             RemoteException;
     boolean ping () throws RemoteException;
 
+    boolean unsubscribeAll(String IP, int Port) throws RemoteException;
 
     // public void greeting() throws RemoteException;
     String greeting() throws RemoteException;
