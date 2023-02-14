@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/ClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
