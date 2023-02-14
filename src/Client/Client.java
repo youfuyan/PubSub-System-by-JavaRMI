@@ -1,12 +1,15 @@
 package Client;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.net.InetAddress;
 
 import Server.GroupServer;
 import Client.UDPReceiver;
@@ -22,6 +25,35 @@ public class Client {
             groupServer = (GroupServer) registry.lookup("GroupServer");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public class UDPReceiver extends Thread{
+        private int port;
+        private InetAddress address;
+
+        public UDPReceiver (int port,InetAddress address){
+            this.port = port;
+            this.address = address;
+        }
+
+        @Override
+        public void run (){
+            try{
+                DatagramSocket socket =  new DatagramSocket(port);
+                while(true){
+                    byte [] buffer = new byte[120];
+                    DatagramPacket packet  = new DatagramPacket(buffer, buffer.length);
+                    socket.receive(packet);
+                    if (packet.getAddress().equals(address)){
+                        String message = new String(packet.getData(), 0, packet.getLength());
+                        System.out.println("Received article: " + message);
+                    }
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -62,10 +94,12 @@ public class Client {
     }
 
     public boolean subscribe(String ip, int port, String article) {
+        boolean subscribe_status = false;
         try {
-            groupServer.subscribe(ip, port, article);
-            System.out.println("Subscribe success");
-            return true;
+            subscribe_status = groupServer.subscribe(ip, port, article);
+            if(subscribe_status) System.out.println("Subscribe success");
+            else System.out.println("Subscribe failed");
+            return subscribe_status;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -74,10 +108,12 @@ public class Client {
     }
 
     public boolean unsubscribe(String ip, int port, String article) {
+        boolean unsubscribe_status = false;
         try {
-            groupServer.unsubscribe(ip, port, article);
-            System.out.println("Unsubscribe success");
-            return true;
+            unsubscribe_status = groupServer.unsubscribe(ip, port, article);
+            if(unsubscribe_status) System.out.println("Unsubscribe success");
+            else System.out.println("Unsubscribe failed");
+            return unsubscribe_status;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -119,6 +155,16 @@ public class Client {
         }, 0, interval);
     }
 
+    public void receiveUDP(int port, String ip){
+        try{
+            InetAddress address = InetAddress.getByName(ip);
+            UDPReceiver receiver = new UDPReceiver(port,address);
+            receiver.start();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public String greeting() {
         try {
             return groupServer.greeting();
@@ -134,19 +180,25 @@ public class Client {
         System.out.println("Client ready.");
         client.ping(100, 5);
 
-        UDPReceiver udpReceiver = new UDPReceiver(1099);
-        try {
-            udpReceiver.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // UDPReceiver udpReceiver = new UDPReceiver(1099);
+        // try {
+        //     udpReceiver.start();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
+        client.receiveUDP(1098,"127.0.0.1");
         //join
         boolean join_status = client.join("127.0.0.1", 1099);
         System.out.println("Join status is " + join_status);
         //boolean leave_status = client.leave("127.0.0.1", 1098);
         //System.out.println("Leave status is " + leave_status);
-        boolean publish_status = client.publish("Sport;;;contents","127.0.0.1", 1099);
+        boolean join_status2 = client.join("127.0.0.1", 1098);
+        client.subscribe("127.0.0.1", 1098, "Sports;;;");
+        //client.unsubscribe("127.0.0.1", 1098, "Sports;;;");
+        boolean publish_status = client.publish("Sports;UMN;;contents","127.0.0.1", 1099);
         System.out.println("publish status is " + publish_status);
+        
+
 
     }
 }

@@ -9,11 +9,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Flow.Subscriber;
 
 public class GroupServerImpl extends UnicastRemoteObject implements GroupServer {
     private class ClientInfo {
         private String IP;
         private int Port;
+        private ArrayList<String> SubscribedArticles;
 
         public ClientInfo(String IP, int Port) {
             this.IP = IP;
@@ -28,6 +30,21 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             return Port;
         }
 
+        public ArrayList<String> getSubscribedArticles(){
+            return SubscribedArticles;
+        }
+
+        public void addSubscribedArticle(String article){
+            if (this.SubscribedArticles == null){
+                this.SubscribedArticles = new ArrayList<>();
+            }
+            this.SubscribedArticles.add(article);
+        }
+
+        public void removeSubscribedArticle(String article){
+            this.SubscribedArticles.remove(article);
+        }
+
         @Override
         public boolean equals(Object o) {
             if (o == this) return true;
@@ -40,19 +57,42 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
         private String Article;
         private String publisherIP;
         private int publisherPort;
+        private String Type;
+        private String Originator;
+        private String Org;
+        private String Contents;
 
         public Publication(String article, String publisherip, int publisherport){
             this.Article = article;
             this.publisherIP =publisherip;
             this.publisherPort = publisherport;
+            String[] parts = article.split(";");
+            this.Type = parts[0];
+            this.Originator = parts[1];
+            this.Org = parts[2];
+            this.Contents = parts[3];
         }
 
         public String getArticle() {
             return Article;
         }
+        public String getType() {
+            return Type;
+        }
+        public String getOriginator() {
+            return Originator;
+        }
+        public String getOrg() {
+            return Org;
+        }
+        public String getContents() {
+            return Contents;
+        }
     }
 
-    private HashMap<String, ArrayList<ClientInfo>> subscriptions;
+    // private HashMap<String, ArrayList<ClientInfo>> subscriptions1;
+    // private HashMap<String, ArrayList<ClientInfo>> subscriptions2;
+    // private HashMap<String, ArrayList<ClientInfo>> subscriptions3;
     private ArrayList<ClientInfo> clients;
     private ArrayList<Publication> publications;
     private static final int MAXCLIENT = 10;
@@ -60,7 +100,9 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
     private final String[] types = new String[]{"Sports", "Lifestyle", "Entertainment", "Business", "Technology", "Science", "Politics", "Health"};
     // Implement the methods defined in the Remote interface
     public GroupServerImpl() throws RemoteException {
-        subscriptions = new HashMap<>();
+        // subscriptions1 = new HashMap<>();
+        // subscriptions2 = new HashMap<>();
+        // subscriptions3 = new HashMap<>();
         clients = new ArrayList<>();
         publications = new ArrayList<>();
     }
@@ -91,9 +133,9 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             ClientInfo client = new ClientInfo(ip, port);
             if (clients.contains(client)) {
                 clients.remove(client);
-                for (List<ClientInfo> subscribers : subscriptions.values()) {
-                    subscribers.remove(client);
-                }
+                // for (List<ClientInfo> subscribers : subscriptions.values()) {
+                //     subscribers.remove(client);
+                // }
                 return true;
             }
             return false;
@@ -108,16 +150,52 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
         try {
             ClientInfo client = new ClientInfo(ip, port);
             String[] parts = article.split(";");
-            if (parts.length != 4) {
-                return false;
+            // if (parts.length != 4) {
+            //     return false;
+            // }
+            String type = parts.length > 0 ? parts[0] : "";
+            if((!Arrays.asList(types).contains(type)) && type != "") return false;
+            String originator = parts.length > 1 ? parts[1] : "";
+            String org = parts.length > 2 ? parts[2] : "";
+            if((type.equals("")) && (originator.equals("")) && (org.equals(""))) return false;
+            if (clients.contains(client)) {
+                int index = clients.indexOf(client);
+                clients.get(index).addSubscribedArticle(type+";"+originator+";"+org);
             }
-            String type = parts[0];
-            List<ClientInfo> subscribers = subscriptions.get(type);
-            if (subscribers == null) {
-                subscribers = new ArrayList<>();
-                subscriptions.put(type, (ArrayList<ClientInfo>) subscribers);
+            else return false;
+            /*List<ClientInfo> subscribers1 = subscriptions1.get(type);
+            List<ClientInfo> subscribers2 = subscriptions2.get(originator);
+            List<ClientInfo> subscribers3 = subscriptions3.get(org);
+            if(type != ""){
+                if (subscribers1 == null) {
+                    subscribers1 = new ArrayList<>();
+                    subscriptions1.put(type, (ArrayList<ClientInfo>) subscribers1);
+                }
+                subscribers1.add(client);
             }
-            subscribers.add(client);
+            if(originator != ""){
+                if (subscribers2 == null) {
+                    subscribers2 = new ArrayList<>();
+                    subscriptions2.put(originator, (ArrayList<ClientInfo>) subscribers2);
+                }
+                subscribers2.add(client);
+            }
+            if(org != ""){
+                if (subscribers3 == null) {
+                    subscribers3 = new ArrayList<>();
+                    subscriptions3.put(org, (ArrayList<ClientInfo>) subscribers3);
+                }
+                subscribers3.add(client);
+            }*/
+            for (Publication publication : publications){
+                String pubtype = publication.getType();
+                String puboriginator = publication.getOriginator();
+                String puborg = publication.getOrg();
+                if(((type.equals(pubtype))|| type.equals("")) && ((originator.equals(puboriginator))|| originator.equals("")) && ((org.equals(puborg))|| org.equals(""))){
+                    // send article containing contents to this client by UDP
+                    SendUDP(publication.getArticle(), port, ip);
+                }
+            }
             return true;
         }
         catch (Exception e) {
@@ -130,16 +208,46 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
         try {
             ClientInfo client = new ClientInfo(ip, port);
             String[] parts = article.split(";");
-            if (parts.length != 4) {
-                return false;
+            // if (parts.length != 4) {
+            //     return false;
+            // }
+            String type = parts.length > 0 ? parts[0] : "";
+            if((!Arrays.asList(types).contains(type)) && type != "") return false;
+            String originator = parts.length > 1 ? parts[1] : "";
+            String org = parts.length > 2 ? parts[2] : "";
+            if((type.equals("")) && (originator.equals("")) && (org.equals(""))) return false;
+
+            if (clients.contains(client)) {
+                int index = clients.indexOf(client);
+                if(clients.get(index).getSubscribedArticles().contains(type+";"+originator+";"+org)){
+                    clients.get(index).removeSubscribedArticle(type+";"+originator+";"+org);
+                    return true;
+                }
+                else return false;
             }
-            String type = parts[0];
-            List<ClientInfo> subscribers = subscriptions.get(type);
-            if (subscribers == null) {
-                return false;
+            else return false;
+            /* 
+            List<ClientInfo> subscribers1 = subscriptions1.get(type);
+            List<ClientInfo> subscribers2 = subscriptions2.get(originator);
+            List<ClientInfo> subscribers3 = subscriptions3.get(org);
+            if (subscribers1 == null) return false;
+            if (subscribers2 == null) return false;
+            if (subscribers3 == null) return false;
+            boolean remove_satue = false;
+            if (subscribers1.contains(client)) {
+                subscribers1.remove(client);
+                remove_satue = true;
             }
-            subscribers.remove(client);
-            return true;
+            if (subscribers2.contains(client)) {
+                subscribers2.remove(client);
+                remove_satue = true;
+            }
+            if (subscribers3.contains(client)) {
+                subscribers3.remove(client);
+                remove_satue = true;
+            }
+            return remove_satue;
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,6 +256,7 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
 
     public synchronized boolean publish(String article, String ip, int port) throws RemoteException {
         try {
+            boolean publish_status = false;
             ClientInfo client = new ClientInfo(ip, port);
             if (!clients.contains(client)) {
                 return false;
@@ -160,14 +269,29 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
             String originator = parts[1];
             String org = parts[2];
             String contents = parts[3];
-            if ((!(type == "" && originator == "" && org == "")) && contents != ""){
-                if((Arrays.asList(types).contains(type)) || type == "" ){
+            
+            
+            if ((!(type.equals("") && originator.equals("") && org.equals(""))) && (!contents.equals(""))){
+                if((Arrays.asList(types).contains(type)) || type.equals("") ){
                 Publication publication = new Publication(article, ip, port);
                 publications.add(publication);
-                return true;
+                publish_status = true;
                 }
             }
-            else return false;
+            else publish_status = false;
+            String[] toSendArticles = new String[]{type+";"+originator+";"+org,type+";"+originator+";",";"+originator+";"+org,
+                type+";"+";"+org,type+";"+";",";"+originator+";",";"+";"+org};
+            for(ClientInfo existclient : clients){
+                boolean isSendArticle = false;
+                for(String toSendArticle : toSendArticles){
+                    if(existclient.getSubscribedArticles() == null) isSendArticle = false;
+                    else if(existclient.getSubscribedArticles().contains(toSendArticle)) isSendArticle = true;
+                }
+                if (isSendArticle){
+                    SendUDP(article,existclient.getPort(),existclient.getIP());
+                }
+            }
+            return publish_status;
             /* 
             List<ClientInfo> subscribers = subscriptions.get(type);
             if (subscribers == null) {
@@ -200,6 +324,15 @@ public class GroupServerImpl extends UnicastRemoteObject implements GroupServer 
 
     public synchronized boolean ping() {
         return true;
+    }
+
+    public void SendUDP(String article,int port, String address)throws IOException {
+        DatagramSocket socket = new DatagramSocket();
+        byte[] buffer = article.getBytes();
+        InetAddress clientAddress = InetAddress.getByName(address);
+        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, clientAddress, port);
+        socket.send(packet);
+        socket.close();
     }
 
     public synchronized String greeting() {
