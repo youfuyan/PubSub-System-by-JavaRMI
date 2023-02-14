@@ -1,9 +1,10 @@
 package Client;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 public class ClientScenarioTest {
-
-    public ClientScenarioTest() {};
-
     /**
      * Test case 1: Join
      * Two clients join, one subscribe "Sports",
@@ -20,7 +21,8 @@ public class ClientScenarioTest {
      * Client #1 should not receive the article they published.
      * Test passed if the above steps are executed successfully, and expected results are observed in terminal.
      */
-    public void testCase1() throws InterruptedException {
+    @Test
+    public void testCase1()  {
         Client client1 = new Client();
         Client client2 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1099);
@@ -31,7 +33,12 @@ public class ClientScenarioTest {
         client2.receiveUDP(1098,"127.0.0.1",client2);
         boolean publish_status = client1.publish("Entertainment;UMN;;contents2","127.0.0.1", 1099);
         System.out.println("publish status is " + publish_status);
-        Thread.sleep(100);
+        String msg1 = client1.getCurrentMessage();
+        String msg2 = client2.getCurrentMessage();
+        System.out.println("msg1 is " + msg1);
+        System.out.println("msg2 is " + msg2);
+        assertNull(msg1);
+        assertEquals("Entertainment;UMN;;contents2", msg2);
         client1.leave("127.0.0.1", 1099);
         client2.leave("127.0.0.1", 1098);
 
@@ -49,34 +56,36 @@ public class ClientScenarioTest {
         * Client #1 should not receive the second published article.
         * Test Passed if the above steps are executed successfully, and expected results are observed in terminal.
         */
-    public void testCase2() throws InterruptedException {
+    @Test
+    public void testCase2() {
         Client client1 = new Client();
         Client client2 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1097);
         boolean join_status2 = client2.join("127.0.0.1", 1096);
         client1.subscribe("127.0.0.1",1097,"Sports;;;");
         client2.subscribe("127.0.0.1",1096,"Sports;;;");
-        client1.receiveUDP(1097,"127.0.0.1");
-        client2.receiveUDP(1096,"127.0.0.1");
+        client1.receiveUDP(1097,"127.0.0.1",client1);
+        client2.receiveUDP(1096,"127.0.0.1",client2);
         boolean publish_status = client1.publish("Sports;UMN;;contents1","127.0.0.1", 1097);
         System.out.println("publish status is " + publish_status);
+        String msg1 = client1.getCurrentMessage();
+        String msg2 = client2.getCurrentMessage();
+        System.out.println("msg1 is " + msg1);
+        System.out.println("msg2 is " + msg2);
+        assertEquals("Sports;UMN;;contents1", msg1);
+        assertEquals("Sports;UMN;;contents1", msg2);
         client1.leave("127.0.0.1", 1097);
         boolean publish_status2 = client2.publish("Sports;UMN;;contents2","127.0.0.1", 1096);
         System.out.println("publish status is " + publish_status2);
-        Thread.sleep(100);
+        String msg3 = client1.getCurrentMessage();
+        String msg4 = client2.getCurrentMessage();
+        System.out.println("msg3 is " + msg3);
+        System.out.println("msg4 is " + msg4);
+        assertEquals("Sports;UMN;;contents1", msg3);
+        assertEquals("Sports;UMN;;contents2", msg4);
         client2.leave("127.0.0.1", 1096);
-
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        ClientScenarioTest test = new ClientScenarioTest();
-        System.out.println("*****Test case 1 Start*****");
-        test.testCase1();
-        System.out.println("*****Test case 1 passed*****");
-        System.out.println("*****Test case 2 Start*****");
-        test.testCase2();
-        System.out.println("*****Test case 2 passed*****");
-    }
 
     //
 }

@@ -216,51 +216,5 @@ public class Client {
         System.out.println(client.greeting());
         System.out.println("Client ready");
         client.ping(100, 5);
-
-        // UDPReceiver udpReceiver = new UDPReceiver(1099);
-        // try {
-        //     udpReceiver.start();
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-
-        //join
-        boolean join_status = client.join("127.0.0.1", 1099);
-        System.out.println("Join status is " + join_status);
-        //boolean leave_status = client.leave("127.0.0.1", 1098);
-        //System.out.println("Leave status is " + leave_status);
-        boolean join_status2 = client.join("127.0.0.1", 1098);
-        client.subscribe("127.0.0.1", 1098, "Sports;;;");
-        //client.unsubscribe("127.0.0.1", 1098, "Sports;;;");
-       client.receiveUDP(1098,"127.0.0.1",client);
-        boolean publish_status = client.publish("Sports;UMN;;contents","127.0.0.1", 1099);
-        //should not receive Eneterainment
-        boolean publish_status2 = client.publish("Entertainment;UMN;;contents2","127.0.0.1", 1098);
-        System.out.println("publish status is " + publish_status);
-        System.out.println("publish status2 is " + publish_status2);
-
-
-        // test for unsubscribe all
-        String[] types = new String[]{"Sports", "Lifestyle", "Entertainment", "Business", "Technology", "Science", "Politics", "Health"};
-
-        client.subscribe("127.0.0.1", 1098, types[0]);
-        client.subscribe("127.0.0.1", 1098, types[1]);
-        client.subscribe("127.0.0.1", 1098, types[2]);
-        client.subscribe("127.0.0.1", 1098, types[3]);
-        client.subscribe("127.0.0.1", 1098, types[4]);
-        client.subscribe("127.0.0.1", 1098, types[5]);
-        client.subscribe("127.0.0.1", 1098, types[6]);
-        client.subscribe("127.0.0.1", 1098, types[7]);
-        boolean publish_status_0 = client.publish(types[0] + ";UMN;;contents0","127.0.0.1", 1099);
-        boolean publish_status_1 = client.publish(types[1] + ";UMN;;contents1","127.0.0.1", 1099);
-        boolean publish_status_2 = client.publish(types[2] + ";UMN;;contents2","127.0.0.1", 1099);
-        boolean publish_status_3 = client.publish(types[3] + ";UMN;;contents3","127.0.0.1", 1099);
-        boolean publish_status_4 = client.publish(types[4] + ";UMN;;contents4","127.0.0.1", 1099);
-        boolean publish_status_5 = client.publish(types[5] + ";UMN;;contents5","127.0.0.1", 1099);
-        boolean publish_status_6 = client.publish(types[6] + ";UMN;;contents6","127.0.0.1", 1099);
-        boolean publish_status_7 = client.publish(types[7] + ";UMN;;contents7","127.0.0.1", 1099);
-        client.unsubscribeAll("127.0.0.1", 1098);
-
-
     }
 }

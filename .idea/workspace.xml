@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="Unsubscribe all method added, test scenariot added">
+    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="test scenario 2 added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,22 +57,9 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientScenarioTest">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
-      <module name="CSCI5105-P1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClientScenarioTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -109,12 +99,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ClientScenarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSCI5105-P1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Client" />
+      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientScenarioTest.testCase2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSCI5105-P1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Client" />
+      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
+      <option name="METHOD_NAME" value="testCase2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientScenarioTest" />
-        <item itemvalue="Application.GroupServerMain" />
-        <item itemvalue="JUnit.ClientMethodTest" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.ClientScenarioTest" />
+        <item itemvalue="JUnit.ClientMethodTest" />
+        <item itemvalue="Application.GroupServerMain" />
+        <item itemvalue="JUnit.ClientScenarioTest.testCase2" />
       </list>
     </recent_temporary>
   </component>
@@ -167,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676411304861</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test scenario 2 added">
+      <created>1676413372171</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676413372171</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +233,7 @@
     <MESSAGE value="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)" />
     <MESSAGE value="Change Test case. All test passed" />
     <MESSAGE value="Unsubscribe all method added, test scenariot added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unsubscribe all method added, test scenariot added" />
+    <MESSAGE value="test scenario 2 added" />
+    <option name="LAST_COMMIT_MESSAGE" value="test scenario 2 added" />
   </component>
 </project>
