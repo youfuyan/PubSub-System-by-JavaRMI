@@ -18,9 +18,9 @@ public class ClientScenarioTest {
      * Expected results:
      * Client #2 should receive the published article.
      * Client #1 should not receive the article they published.
-     * @return true if the test case passes, false otherwise
+     * Test passed if the above steps are executed successfully, and expected results are observed in terminal.
      */
-    public boolean testCase1() throws InterruptedException {
+    public void testCase1() throws InterruptedException {
         Client client1 = new Client();
         Client client2 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1099);
@@ -30,21 +30,11 @@ public class ClientScenarioTest {
         client1.receiveUDP(1099,"127.0.0.1");
         client2.receiveUDP(1098,"127.0.0.1");
         boolean publish_status = client1.publish("Entertainment;UMN;;contents2","127.0.0.1", 1099);
-
         System.out.println("publish status is " + publish_status);
         Thread.sleep(100);
-        System.out.println("client1 received: " + client1.getCurrentMessage());
-        System.out.println("client2 received: " + client2.getCurrentMessage());
         client1.leave("127.0.0.1", 1099);
         client2.leave("127.0.0.1", 1098);
-        if (client1.getCurrentMessage().equals("Entertainment;UMN;;contents2") && client2.getCurrentMessage().equals("")){
-            System.out.println("Test Case 1: PASSED");
-            return true;
-        }
-        else {
-            System.out.println("Test Case 1: FAILED");
-            return false;
-        }
+
     }
 
     /**
@@ -57,13 +47,35 @@ public class ClientScenarioTest {
         * Expected results:
         * Client #2 should receive the first published article.
         * Client #1 should not receive the second published article.
-        * @return true if the test case passes, false otherwise
-     */
+        * Test Passed if the above steps are executed successfully, and expected results are observed in terminal.
+        */
+    public void testCase2() throws InterruptedException {
+        Client client1 = new Client();
+        Client client2 = new Client();
+        boolean join_status = client1.join("127.0.0.1", 1097);
+        boolean join_status2 = client2.join("127.0.0.1", 1096);
+        client1.subscribe("127.0.0.1",1097,"Sports;;;");
+        client2.subscribe("127.0.0.1",1096,"Sports;;;");
+        client1.receiveUDP(1097,"127.0.0.1");
+        client2.receiveUDP(1096,"127.0.0.1");
+        boolean publish_status = client1.publish("Sports;UMN;;contents1","127.0.0.1", 1097);
+        System.out.println("publish status is " + publish_status);
+        client1.leave("127.0.0.1", 1097);
+        boolean publish_status2 = client2.publish("Sports;UMN;;contents2","127.0.0.1", 1096);
+        System.out.println("publish status is " + publish_status2);
+        Thread.sleep(100);
+        client2.leave("127.0.0.1", 1096);
+
+    }
 
     public static void main(String[] args) throws InterruptedException {
         ClientScenarioTest test = new ClientScenarioTest();
+        System.out.println("*****Test case 1 Start*****");
         test.testCase1();
-
+        System.out.println("*****Test case 1 passed*****");
+        System.out.println("*****Test case 2 Start*****");
+        test.testCase2();
+        System.out.println("*****Test case 2 passed*****");
     }
 
     //

@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="Change Test case. All test passed">
-      <change afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
+    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="Unsubscribe all method added, test scenariot added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Server/GroupServerImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/UDPReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/UDPReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/GroupServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/GroupServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/GroupServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/GroupServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +113,8 @@
       <list>
         <item itemvalue="Application.ClientScenarioTest" />
         <item itemvalue="Application.GroupServerMain" />
-        <item itemvalue="Application.Client" />
         <item itemvalue="JUnit.ClientMethodTest" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676352579199</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Unsubscribe all method added, test scenariot added">
+      <created>1676411304861</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676411304861</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +203,7 @@
     <MESSAGE value="Make it to IntelliJ java idea project" />
     <MESSAGE value="add UPD for Server and Client. Create intial test cases.(Failed on Join, Publish, Un/subscribe)" />
     <MESSAGE value="Change Test case. All test passed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change Test case. All test passed" />
+    <MESSAGE value="Unsubscribe all method added, test scenariot added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unsubscribe all method added, test scenariot added" />
   </component>
 </project>
