@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="finalize test">
+    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="test4 case fore test scenario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/UDPReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/UDPReceiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,33 +31,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientScenarioTest.testCase4">
+  <component name="RunManager" selected="JUnit.ClientScenarioTest">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
       <module name="CSCI5105-P1" />
@@ -87,7 +85,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientScenarioTest.testCase1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientMethodTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -96,14 +94,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Client" />
-      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
-      <option name="METHOD_NAME" value="testCase1" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="Client.ClientMethodTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientScenarioTest.testCase3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientScenarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -113,8 +110,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Client" />
       <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
-      <option name="METHOD_NAME" value="testCase3" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClientScenarioTest.testCase4" />
+        <item itemvalue="JUnit.ClientScenarioTest" />
+        <item itemvalue="JUnit.ClientMethodTest" />
         <item itemvalue="Application.GroupServerMain" />
-        <item itemvalue="JUnit.ClientScenarioTest.testCase1" />
-        <item itemvalue="JUnit.ClientScenarioTest.testCase3" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.ClientScenarioTest.testCase4" />
       </list>
     </recent_temporary>
   </component>
@@ -159,7 +155,7 @@
       <workItem from="1675959586650" duration="5399000" />
       <workItem from="1675973981028" duration="145000" />
       <workItem from="1676426119590" duration="1363000" />
-      <workItem from="1676428657756" duration="8526000" />
+      <workItem from="1676428657756" duration="10797000" />
     </task>
     <task id="LOCAL-00001" summary="Make it to IntelliJ java idea project">
       <created>1675740449060</created>
@@ -224,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676434124118</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="test4 case fore test scenario">
+      <created>1676437786608</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1676437786608</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +267,18 @@
     <MESSAGE value="test scenario 2 added" />
     <MESSAGE value="All test passed" />
     <MESSAGE value="finalize test" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalize test" />
+    <MESSAGE value="test4 case fore test scenario" />
+    <option name="LAST_COMMIT_MESSAGE" value="test4 case fore test scenario" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Client/ClientMethodTest.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

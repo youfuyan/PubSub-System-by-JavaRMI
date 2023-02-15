@@ -218,7 +218,7 @@ public class ClientMethodTest {
     @Test
     //A client subscribe a article type and then server send a article meeting the requirements.
     //Expected result: The client receive the related articles.
-    public void subscribeandSend() {
+    public void subscribeandSend() throws InterruptedException {
         Client client1 = new Client();
         Client client2 = new Client();
         client1.join("127.0.0.1", 1087);
@@ -228,6 +228,7 @@ public class ClientMethodTest {
         client2.publish("Business;;;contents","127.0.0.1", 1086);
         client2.publish("Business;;;contents2","127.0.0.1", 1086);
         client1.subscribe("127.0.0.1", 1087, "Business;;;");
+        Thread.sleep(200);
         String msg = client1.getCurrentMessage();
         int udpcount = client1.getUDPCount();
         assertEquals("Business;;;contents2", msg);

@@ -97,13 +97,14 @@ public class ClientScenarioTest {
      * Test Passed if the above steps are executed successfully, and expected results are observed in terminal.
      */
     @Test
-    public void testCase3() {
+    public void testCase3() throws InterruptedException {
         Client client1 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1095);
         client1.subscribe("127.0.0.1", 1095,"Sports;;;");
         client1.subscribe("127.0.0.1", 1095,"Sports;;UMN;");
         client1.receiveUDP(1095, "127.0.0.1", client1);
         client1.publish("Sports;;UMN;UMN wins", "127.0.0.1", 1095);
+        Thread.sleep(200);
         assertEquals(1, client1.getUDPCount());
         client1.leave("127.0.0.1", 1095);
     }
@@ -126,7 +127,7 @@ public class ClientScenarioTest {
      * Test Passed if the above steps are executed successfully, and expected results are observed in terminal.
      */
     @Test
-    public void testCase4() {
+    public void testCase4() throws InterruptedException {
         Client client1 = new Client();
         Client client2 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1094);
@@ -135,6 +136,7 @@ public class ClientScenarioTest {
         client1.subscribe("127.0.0.1", 1094,"Politics;Tony;;"); // subscribe "Sports"
         client1.receiveUDP(1094, "127.0.0.1", client1);
         client2.publish("Politics;Tony;UMN;UMN wins", "127.0.0.1", 1093);
+        Thread.sleep(200);
         assertEquals(1, client1.getUDPCount());
         assertEquals("Politics;Tony;UMN;UMN wins", client1.getCurrentMessage());
         client1.unsubscribe("127.0.0.1", 1094,"Politics;Tony;;"); // unsubscribe "Sports

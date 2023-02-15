@@ -47,6 +47,3 @@ Test the code: Test the code to make sure it works as expected and to catch any 
 
 Refine the code: Based on the results of testing, refine the code as necessary to improve performance, reliability, and usability.
 
-## How to run the program
-
-TBD
