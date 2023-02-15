@@ -15,6 +15,7 @@ public class UDPReceiver implements Runnable {
 
     private String currentMessage;
 
+    public int count = 0;
     private boolean running;
 
     // public String getCurrentMessage() {
@@ -24,7 +25,7 @@ public class UDPReceiver implements Runnable {
     // private void setCurrentMessage(String currentMessage) {
     //     this.currentMessage = currentMessage;
     // }
-    public UDPReceiver (int port, InetAddress address,Client client){
+    public UDPReceiver (int port, InetAddress address, Client client){
         this.port = port;
         this.address = address;
         this.currentMessage = "No message received yet.";
@@ -45,6 +46,9 @@ public class UDPReceiver implements Runnable {
                 String message = new String(packet.getData(), 0, packet.getLength());
                 // process the received message
                 client.setCurrentMessage(message);
+                //client.setUdpCount(client.getUdpCount() + 1);
+                client.addOneToUdpCount();
+                System.out.println("Current UDP count: " + client.getUdpCount());
                 System.out.println("Client " + port + " received message: " + message);
             } catch (IOException e) {
                 e.printStackTrace();

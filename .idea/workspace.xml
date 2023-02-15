@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="finalize test">
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/UDPReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/UDPReceiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +60,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientMethodTest">
+  <component name="RunManager" selected="JUnit.ClientScenarioTest.testCase4">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
       <module name="CSCI5105-P1" />
@@ -84,22 +87,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientMethodTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CSCI5105-P1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Client" />
-      <option name="MAIN_CLASS_NAME" value="Client.ClientMethodTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClientScenarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientScenarioTest.testCase1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -109,12 +97,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="Client" />
       <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testCase1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientScenarioTest.testCase2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientScenarioTest.testCase3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSCI5105-P1" />
       <extension name="coverage">
         <pattern>
@@ -124,7 +113,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="Client" />
       <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
-      <option name="METHOD_NAME" value="testCase2" />
+      <option name="METHOD_NAME" value="testCase3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientScenarioTest.testCase4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSCI5105-P1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Client" />
+      <option name="MAIN_CLASS_NAME" value="Client.ClientScenarioTest" />
+      <option name="METHOD_NAME" value="testCase4" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -132,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClientMethodTest" />
-        <item itemvalue="JUnit.ClientScenarioTest" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.ClientScenarioTest.testCase4" />
         <item itemvalue="Application.GroupServerMain" />
-        <item itemvalue="JUnit.ClientScenarioTest.testCase2" />
+        <item itemvalue="JUnit.ClientScenarioTest.testCase1" />
+        <item itemvalue="JUnit.ClientScenarioTest.testCase3" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +159,7 @@
       <workItem from="1675959586650" duration="5399000" />
       <workItem from="1675973981028" duration="145000" />
       <workItem from="1676426119590" duration="1363000" />
-      <workItem from="1676428657756" duration="4847000" />
+      <workItem from="1676428657756" duration="8526000" />
     </task>
     <task id="LOCAL-00001" summary="Make it to IntelliJ java idea project">
       <created>1675740449060</created>
@@ -212,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676433167431</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="finalize test">
+      <created>1676434124118</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1676434124118</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

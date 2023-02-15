@@ -15,6 +15,21 @@ public class Client {
     private GroupServer groupServer;
     static int pingCount = 0;
 
+    public int getUdpCount() {
+        return this.udpCount;
+    }
+
+    public void setUdpCount(int udpCount) {
+        this.udpCount = udpCount;
+    }
+
+    public void addOneToUdpCount(){
+        this.udpCount++;
+    }
+
+
+
+    private int udpCount = 0;
     private int port;
     private InetAddress address;
     private String currentMessage;
@@ -31,12 +46,14 @@ public class Client {
     }
 
     public String getCurrentMessage() {
-        return currentMessage;
+        return this.currentMessage;
     }
 
     public void setCurrentMessage(String currentMessage) {
         this.currentMessage = currentMessage;
     }
+
+
 
     public boolean join(String ip, int port) {
         boolean join_status = false;
@@ -159,7 +176,7 @@ public class Client {
         try{
             InetAddress address = InetAddress.getByName(ip);
             UDPReceiver receiver = new UDPReceiver(port, address,client);
-             receiver.start();
+            receiver.start();
         } catch (Exception e){
             e.printStackTrace();
         }
