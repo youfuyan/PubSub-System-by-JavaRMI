@@ -2,6 +2,7 @@ package Client;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ClientMethodTest {
@@ -172,6 +173,42 @@ public class ClientMethodTest {
         boolean publishResult = client.publish("Sports;;UMN;", "127.0.0.1", 1099);
         assertFalse(publishResult);
         System.out.println("Test Case 14: Invalid Publish 4 - PASSED");
+        client.leave("127.0.0.1", 1099);
     }
+
+    @Test
+    //A client publish a article and server send it to the subscriber right after it is published.
+    public void publishandSend() {
+        Client client1 = new Client();
+        Client client2 = new Client();
+        client1.join("127.0.0.1", 1089);
+        client2.join("127.0.0.1", 1088);
+        client1.setUDPCount(0);
+        client1.receiveUDP(1089,"127.0.0.1",client1);
+        client1.subscribe("127.0.0.1", 1089, "Technology;;;");
+        client2.publish("Technology;;;contents","127.0.0.1",1088);
+        String msg = client1.getCurrentMessage();
+        int udpcount = client1.getUDPCount();
+        assertEquals("Technology;;;contents", msg);
+        assertEquals(1, udpcount);
+    }
+
+    @Test
+    //A client subscribe a article type and then server send a article meeting the requirements.
+    public void subscribeandSend() {
+        Client client1 = new Client();
+        Client client2 = new Client();
+        client1.join("127.0.0.1", 1087);
+        client2.join("127.0.0.1", 1086);
+        client1.setUDPCount(0);
+        client1.receiveUDP(1087,"127.0.0.1",client1);
+        client2.publish("Business;;;contents","127.0.0.1", 1086);
+        client1.subscribe("127.0.0.1", 1087, "Business;;;");
+        String msg = client1.getCurrentMessage();
+        int udpcount = client1.getUDPCount();
+        assertEquals("Business;;;contents", msg);
+        assertEquals(1, udpcount);
+    }
+
 }
 

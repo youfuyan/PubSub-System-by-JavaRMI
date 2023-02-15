@@ -22,6 +22,7 @@ public class Client {
     private int port;
     private InetAddress address;
     private String currentMessage;
+    private int UDPCount = 0;
 
 
     public Client() {
@@ -34,45 +35,59 @@ public class Client {
         }
     }
 
-//    public class UDPReceiver extends Thread{
-//        private int port;
-//        private InetAddress address;
-//
-//        private String message;
-//
-//        public UDPReceiver (int port,InetAddress address){
-//            this.port = port;
-//            this.address = address;
-//        }
-//
-//        @Override
-//        public void run (){
-//            try{
-//                DatagramSocket socket =  new DatagramSocket(port);
-//                while(true){
-//                    byte [] buffer = new byte[120];
-//                    DatagramPacket packet  = new DatagramPacket(buffer, buffer.length);
-//                    socket.receive(packet);
-//                    if (packet.getAddress().equals(address)){
-//                        String message = new String(packet.getData(), 0, packet.getLength());
-//                        System.out.println("Received article: " + message);
-//                    }
-//                }
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
-//
-//        }
-//
-//    }
+    // public class UDPReceiver extends Thread{
+    //     private int port;
+    //     private InetAddress address;
+
+    //     private String message;
+
+    //     public UDPReceiver (int port,InetAddress address){
+    //         this.port = port;
+    //         this.address = address;
+    //     }
+
+    //     @Override
+    //     public void run (){
+    //         try{
+    //             DatagramSocket socket =  new DatagramSocket(port);
+    //             while(true){
+    //                 byte [] buffer = new byte[120];
+    //                 DatagramPacket packet  = new DatagramPacket(buffer, buffer.length);
+    //                 socket.receive(packet);
+    //                 if (packet.getAddress().equals(address)){
+    //                     String message = new String(packet.getData(), 0, packet.getLength());
+    //                     Client.this.setCurrentMessage(message);
+    //                     Client.this.addoneUDPCount();
+    //                     System.out.println("Received article: " + message);
+    //                 }
+    //             }
+    //         }catch(IOException e){
+    //             e.printStackTrace();
+    //         }
+
+    //     }
+
+    // }
 
 
     public String getCurrentMessage() {
-        return currentMessage;
+        return this.currentMessage;
     }
 
     public void setCurrentMessage(String currentMessage) {
         this.currentMessage = currentMessage;
+    }
+
+    public int getUDPCount(){
+        return this.UDPCount;
+    }
+
+    public void setUDPCount(int count){
+        this.UDPCount = count;
+    }
+
+    public void addoneUDPCount(){
+        this.UDPCount ++;
     }
 
     public boolean join(String ip, int port) {
@@ -195,7 +210,7 @@ public class Client {
     public void receiveUDP(int port, String ip, Client client){
         try{
             InetAddress address = InetAddress.getByName(ip);
-            UDPReceiver receiver = new UDPReceiver(port, address,client);
+            UDPReceiver receiver = new UDPReceiver(port, address, client);
              receiver.start();
         } catch (Exception e){
             e.printStackTrace();
@@ -216,5 +231,19 @@ public class Client {
         System.out.println(client.greeting());
         System.out.println("Client ready");
         client.ping(100, 5);
+
+        Client client1 = new Client();
+         Client client2 = new Client();
+        boolean join_status = client1.join("127.0.0.1", 1099);
+        boolean join_status2 = client2.join("127.0.0.1", 1098);
+        client1.receiveUDP(1099,"127.0.0.1",client1);
+        client1.subscribe("127.0.0.1", 1099, "Sports;;;");
+        client2.publish("Sports;;;contents","127.0.0.1", 1098);
+        System.out.println(client1.getCurrentMessage());
+        System.out.println(client1.getUDPCount());
+        client2.publish("Sports;;UMN;contents","127.0.0.1", 1098);
+        System.out.println(client1.getCurrentMessage());
+        System.out.println(client1.getUDPCount());
+        System.out.println("done!");
     }
 }

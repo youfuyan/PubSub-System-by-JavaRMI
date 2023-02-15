@@ -45,6 +45,7 @@ public class UDPReceiver implements Runnable {
                 String message = new String(packet.getData(), 0, packet.getLength());
                 // process the received message
                 client.setCurrentMessage(message);
+                client.addoneUDPCount();
                 System.out.println("Client " + port + " received message: " + message);
             } catch (IOException e) {
                 e.printStackTrace();
