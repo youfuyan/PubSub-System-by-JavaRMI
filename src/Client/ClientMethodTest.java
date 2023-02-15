@@ -239,6 +239,7 @@ public class ClientMethodTest {
     @Test
     //A client subscribe a article type and then server send a article meeting the requirements.
     //The client unsubscribe the ariticle type and then the client do not receive such kinds of article.
+    //Expected result: The client do not receive the related articles after unsubscribing.
     public void unsubscribeandnotSend() {
         Client client1 = new Client();
         Client client2 = new Client();

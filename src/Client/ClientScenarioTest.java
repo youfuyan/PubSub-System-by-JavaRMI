@@ -27,18 +27,18 @@ public class ClientScenarioTest {
         Client client2 = new Client();
         boolean join_status = client1.join("127.0.0.1", 1099);
         boolean join_status2 = client2.join("127.0.0.1", 1098);
-        client1.subscribe("127.0.0.1", 1099, "Sports;;;");
-        client2.subscribe("127.0.0.1", 1098, "Entertainment;;;");
+        client1.subscribe("127.0.0.1", 1099, "Sports;Jim;;");
+        client2.subscribe("127.0.0.1", 1098, "Entertainment;Jim;;");
         client1.receiveUDP(1099,"127.0.0.1",client1);
         client2.receiveUDP(1098,"127.0.0.1",client2);
-        boolean publish_status = client1.publish("Entertainment;;UMN;contents2","127.0.0.1", 1099);
+        boolean publish_status = client1.publish("Entertainment;Jim;UMN;contents2","127.0.0.1", 1099);
         System.out.println("publish status is " + publish_status);
         String msg1 = client1.getCurrentMessage();
         String msg2 = client2.getCurrentMessage();
         System.out.println("msg1 is " + msg1);
         System.out.println("msg2 is " + msg2);
         assertNull(msg1);
-        assertEquals("Entertainment;;UMN;contents2", msg2);
+        assertEquals("Entertainment;Jim;UMN;contents2", msg2);
         client1.leave("127.0.0.1", 1099);
         client2.leave("127.0.0.1", 1098);
 
@@ -84,6 +84,7 @@ public class ClientScenarioTest {
         assertEquals("Sports;;UMN;contents1", msg3);
         assertEquals("Sports;;UMN;contents2", msg4);
         client2.leave("127.0.0.1", 1096);
+        client1.leave("127.0.0.1", 1097);
     }
 
     /**
@@ -104,6 +105,7 @@ public class ClientScenarioTest {
         client1.receiveUDP(1095, "127.0.0.1", client1);
         client1.publish("Sports;;UMN;UMN wins", "127.0.0.1", 1095);
         assertEquals(1, client1.getUDPCount());
+        client1.leave("127.0.0.1", 1095);
     }
 
     /**
@@ -130,18 +132,18 @@ public class ClientScenarioTest {
         boolean join_status = client1.join("127.0.0.1", 1094);
         boolean join_status2 = client2.join("127.0.0.1", 1093);
         client1.setUDPCount(0);
-        client1.subscribe("127.0.0.1", 1094,"Politics;;;"); // subscribe "Sports"
+        client1.subscribe("127.0.0.1", 1094,"Politics;Tony;;"); // subscribe "Sports"
         client1.receiveUDP(1094, "127.0.0.1", client1);
-        client2.publish("Politics;;UMN;UMN wins", "127.0.0.1", 1093);
+        client2.publish("Politics;Tony;UMN;UMN wins", "127.0.0.1", 1093);
         assertEquals(1, client1.getUDPCount());
-        assertEquals("Politics;;UMN;UMN wins", client1.getCurrentMessage());
-        client1.unsubscribe("127.0.0.1", 1094,"Politics;;;"); // unsubscribe "Sports
-        client1.subscribe("127.0.0.1", 1094,"Politics;;UMN;"); // subscribe "Sports and UMN"
+        assertEquals("Politics;Tony;UMN;UMN wins", client1.getCurrentMessage());
+        client1.unsubscribe("127.0.0.1", 1094,"Politics;Tony;;"); // unsubscribe "Sports
+        client1.subscribe("127.0.0.1", 1094,"Politics;Tony;UMN;"); // subscribe "Sports and UMN"
         assertEquals(2, client1.getUDPCount());
-        assertEquals("Politics;;UMN;UMN wins", client1.getCurrentMessage());
-        client2.publish("Politics;;;UMN wins wins 2", "127.0.0.1", 1093);
+        assertEquals("Politics;Tony;UMN;UMN wins", client1.getCurrentMessage());
+        client2.publish("Politics;Tony;;UMN wins wins 2", "127.0.0.1", 1093);
         assertEquals(2, client1.getUDPCount());
-        assertEquals("Politics;;UMN;UMN wins", client1.getCurrentMessage());
+        assertEquals("Politics;Tony;UMN;UMN wins", client1.getCurrentMessage());
     }
 
 }
