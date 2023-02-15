@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="test scenario 2 added">
+    <list default="true" id="00773d50-132d-4a00-b6df-1680dcb5a716" name="Changes" comment="All test passed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI5105-P1/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI5105-P1/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMethodTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientScenarioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,30 +35,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="JUnit.ClientMethodTest">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
       <module name="CSCI5105-P1" />
@@ -132,9 +136,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.ClientScenarioTest" />
         <item itemvalue="JUnit.ClientMethodTest" />
+        <item itemvalue="JUnit.ClientScenarioTest" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="Application.GroupServerMain" />
         <item itemvalue="JUnit.ClientScenarioTest.testCase2" />
       </list>
@@ -153,6 +157,8 @@
       <workItem from="1675955020299" duration="1511000" />
       <workItem from="1675959586650" duration="5399000" />
       <workItem from="1675973981028" duration="145000" />
+      <workItem from="1676426119590" duration="1363000" />
+      <workItem from="1676428657756" duration="3474000" />
     </task>
     <task id="LOCAL-00001" summary="Make it to IntelliJ java idea project">
       <created>1675740449060</created>
@@ -196,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676413372171</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="All test passed">
+      <created>1676416171474</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676416171474</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +247,7 @@
     <MESSAGE value="Change Test case. All test passed" />
     <MESSAGE value="Unsubscribe all method added, test scenariot added" />
     <MESSAGE value="test scenario 2 added" />
-    <option name="LAST_COMMIT_MESSAGE" value="test scenario 2 added" />
+    <MESSAGE value="All test passed" />
+    <option name="LAST_COMMIT_MESSAGE" value="All test passed" />
   </component>
 </project>

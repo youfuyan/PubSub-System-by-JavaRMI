@@ -1,8 +1,5 @@
 package Client;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -13,7 +10,6 @@ import java.util.TimerTask;
 import java.net.InetAddress;
 
 import Server.GroupServer;
-import Client.UDPReceiver;
 
 public class Client {
     private GroupServer groupServer;
@@ -33,39 +29,6 @@ public class Client {
             e.printStackTrace();
         }
     }
-
-//    public class UDPReceiver extends Thread{
-//        private int port;
-//        private InetAddress address;
-//
-//        private String message;
-//
-//        public UDPReceiver (int port,InetAddress address){
-//            this.port = port;
-//            this.address = address;
-//        }
-//
-//        @Override
-//        public void run (){
-//            try{
-//                DatagramSocket socket =  new DatagramSocket(port);
-//                while(true){
-//                    byte [] buffer = new byte[120];
-//                    DatagramPacket packet  = new DatagramPacket(buffer, buffer.length);
-//                    socket.receive(packet);
-//                    if (packet.getAddress().equals(address)){
-//                        String message = new String(packet.getData(), 0, packet.getLength());
-//                        System.out.println("Received article: " + message);
-//                    }
-//                }
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
-//
-//        }
-//
-//    }
-
 
     public String getCurrentMessage() {
         return currentMessage;

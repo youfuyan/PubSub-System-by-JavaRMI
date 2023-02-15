@@ -53,7 +53,8 @@ public class ClientMethodTest {
     }
 
     @Test
-    //test
+    //unsubscribeAll: A client attempts to unsubscribe to all topics after subscribe to all topic
+    //Expected result: The client should be able to unsubscribe to all topics, and return true
     public void testUnsubscribeAll() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
@@ -66,19 +67,21 @@ public class ClientMethodTest {
         client.subscribe("127.0.0.1", 1099, types[5]);
         client.subscribe("127.0.0.1", 1099, types[6]);
         client.subscribe("127.0.0.1", 1099, types[7]);
-        boolean publish_status_0 = client.publish(types[0] + ";;UMN;contents0", "127.0.0.1", 1099);
-        boolean publish_status_1 = client.publish(types[1] + ";;UMN;contents1", "127.0.0.1", 1099);
-        boolean publish_status_2 = client.publish(types[2] + ";;UMN;contents2", "127.0.0.1", 1099);
-        boolean publish_status_3 = client.publish(types[3] + ";;UMN;contents3", "127.0.0.1", 1099);
-        boolean publish_status_4 = client.publish(types[4] + ";;UMN;contents4", "127.0.0.1", 1099);
-        boolean publish_status_5 = client.publish(types[5] + ";;UMN;contents5", "127.0.0.1", 1099);
-        boolean publish_status_6 = client.publish(types[6] + ";;UMN;contents6", "127.0.0.1", 1099);
-        boolean publish_status_7 = client.publish(types[7] + ";;UMN;contents7", "127.0.0.1", 1099);
+        client.publish(types[0] + ";;UMN;contents0", "127.0.0.1", 1099);
+        client.publish(types[1] + ";;UMN;contents1", "127.0.0.1", 1099);
+        client.publish(types[2] + ";;UMN;contents2", "127.0.0.1", 1099);
+        client.publish(types[3] + ";;UMN;contents3", "127.0.0.1", 1099);
+        client.publish(types[4] + ";;UMN;contents4", "127.0.0.1", 1099);
+        client.publish(types[5] + ";;UMN;contents5", "127.0.0.1", 1099);
+        client.publish(types[6] + ";;UMN;contents6", "127.0.0.1", 1099);
+        client.publish(types[7] + ";;UMN;contents7", "127.0.0.1", 1099);
         assertTrue(client.unsubscribeAll("127.0.0.1", 1099));
         System.out.println("Test Case 5: Unsubscribe All - PASSED");
     }
 
     @Test
+    //publish: A client attempts to publish a message to a topic
+    //Expected result: The client should be able to publish a message to a topic, and return true
     public void testPublish() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
@@ -89,6 +92,8 @@ public class ClientMethodTest {
     }
 
     @Test
+    //greeting: A client attempts to get the greeting message from the server
+    //Expected result: The client should be able to get the greeting message from the server, and return true
     public void testGreeting() {
         Client client = new Client();
         String greeting = client.greeting();
@@ -107,6 +112,7 @@ public class ClientMethodTest {
 
     @Test
     //invalid subscribe: A client attempts to subscribe to a topic that does not exist
+    //Expected result: The client should not be able to subscribe to a topic, and return false
     public void invalidSubscribe() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
@@ -117,61 +123,67 @@ public class ClientMethodTest {
 
     @Test
     //invalid subscribe: A client attempts to subscribe to a topic but with wrong order of parameters
+    //Expected result: The client should not be able to subscribe to a topic, and return false
     public void invalidSubscribe2() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean subscribeResult = client.subscribe("127.0.0.1", 1099, ";;;");
         assertFalse(subscribeResult);
-        System.out.println("Test Case 9: Invalid Subscribe - PASSED");
+        System.out.println("Test Case 10: Invalid Subscribe - PASSED");
     }
 
     @Test
     //invalid unsubscribe: A client attempts to unsubscribe from a topic that it is not subscribed to
+    //Expected result: The client should not be able to unsubscribe from a topic, and return false
     public void invalidUnsubscribe() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean unsubscribeResult = client.unsubscribe("127.0.0.1", 1099, "Sports;;;");
         assertFalse(unsubscribeResult);
-        System.out.println("Test Case 10: Invalid Unsubscribe - PASSED");
+        System.out.println("Test Case 11: Invalid Unsubscribe - PASSED");
     }
 
     @Test
-    //valid publish: A client attempts to publish to a topic without someone field
+    //valid publish: A client attempts to publish to a topic without originator field
+    //Expected result: The client should be able to publish to a topic without originator field, and return true
     public void validPublish2() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean publishResult = client.publish("Sports;;UMN;contents", "127.0.0.1", 1099);
         assertTrue(publishResult);
-        System.out.println("Test Case 11: valid Publish 2 - PASSED");
+        System.out.println("Test Case 12: valid Publish 2 - PASSED");
     }
 
     @Test
     //invalid publish 2: A client attempts to publish to a topic that does not exist
+    //Expected result: The client should not be able to publish to a topic, and return false
     public void invalidPublish2() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean publishResult = client.publish("Finance;;UMN;contents", "127.0.0.1", 1099);
         assertFalse(publishResult);
-        System.out.println("Test Case 12: Invalid Publish 2 - PASSED");
+        System.out.println("Test Case 13: Invalid Publish 2 - PASSED");
     }
     @Test
     //invalid publish 3: A client attempts to publish with wrong order of fields for the article
+    //Expected result: The client should not be able to publish to a topic, and return false
     public void invalidPublish3() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean publishResult = client.publish("UMN;Sports;;contents", "127.0.0.1", 1099);
         assertFalse(publishResult);
-        System.out.println("Test Case 13: Invalid Publish 3 - PASSED");
+        System.out.println("Test Case 14: Invalid Publish 3 - PASSED");
     }
 
     @Test
     //invalid publish 4: A client attempts to publish without the content field
+    //Expected result: The client should not be able to publish to a topic, and return false
     public void invalidPublish4() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
         boolean publishResult = client.publish("Sports;;UMN;", "127.0.0.1", 1099);
         assertFalse(publishResult);
-        System.out.println("Test Case 14: Invalid Publish 4 - PASSED");
+        System.out.println("Test Case 15: Invalid Publish 4 - PASSED");
     }
 }
 
