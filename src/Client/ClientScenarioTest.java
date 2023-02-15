@@ -86,6 +86,17 @@ public class ClientScenarioTest {
         client2.leave("127.0.0.1", 1096);
     }
 
+    /**
+     * Test case 3: client subscribe to the multiple topics
+     * One clients join, both subscribe "Sports",
+     * one client publishes an "Sports" article,
+     * one client leaves the group,
+     * one client publishes another "Sports" article,
+     * Observe the results in both client #1 and client #2 terminals.
+     * Expected results:
+     * Client #2 should receive the first published article.
+     * Client #1 should not receive the second published article.
+     * Test Passed if the above steps are executed successfully, and expected results are observed in terminal.
+     */
 
-    //
 }

@@ -85,7 +85,7 @@ public class ClientMethodTest {
     public void testPublish() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
-        boolean publishResult = client.publish("Sports;;UMN;contents", "127.0.0.1", 1099);
+        boolean publishResult = client.publish("Sports;Someone;UMN;contents", "127.0.0.1", 1099);
         assertTrue(publishResult);
         System.out.println("Test Case 6: Publish - PASSED");
         client.leave("127.0.0.1", 1099);
@@ -127,7 +127,7 @@ public class ClientMethodTest {
     public void invalidSubscribe2() {
         Client client = new Client();
         client.join("127.0.0.1", 1099);
-        boolean subscribeResult = client.subscribe("127.0.0.1", 1099, ";;;");
+        boolean subscribeResult = client.subscribe("127.0.0.1", 1099, "UMN;Sports;;contents");
         assertFalse(subscribeResult);
         System.out.println("Test Case 10: Invalid Subscribe - PASSED");
     }
