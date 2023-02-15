@@ -197,6 +197,7 @@ public class ClientMethodTest {
 
     @Test
     //A client publish a article and server send it to the subscriber right after it is published.
+    //Expected result: The client who subscribe this article should receive it.
     public void publishandSend() {
         Client client1 = new Client();
         Client client2 = new Client();
@@ -216,6 +217,7 @@ public class ClientMethodTest {
 
     @Test
     //A client subscribe a article type and then server send a article meeting the requirements.
+    //Expected result: The client receive the related articles.
     public void subscribeandSend() {
         Client client1 = new Client();
         Client client2 = new Client();
@@ -224,11 +226,12 @@ public class ClientMethodTest {
         client1.setUDPCount(0);
         client1.receiveUDP(1087,"127.0.0.1",client1);
         client2.publish("Business;;;contents","127.0.0.1", 1086);
+        client2.publish("Business;;;contents2","127.0.0.1", 1086);
         client1.subscribe("127.0.0.1", 1087, "Business;;;");
         String msg = client1.getCurrentMessage();
         int udpcount = client1.getUDPCount();
-        assertEquals("Business;;;contents", msg);
-        assertEquals(1, udpcount);
+        assertEquals("Business;;;contents2", msg);
+        assertEquals(2, udpcount);
         client1.leave("127.0.0.1", 1087);
         client2.leave("127.0.0.1", 1086);
     }
